@@ -1,6 +1,8 @@
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+
+using namespace std;
 
 struct node{
   char *data;
@@ -18,7 +20,7 @@ class LinkedList{
 }listObject;
 
 void indiFunc(int index,struct node* object){
-  printf("%d:%s\n",index,object->data );
+  cout<<index<<":"<<object->data<<endl;
 }
 
 int main(int argc, char const *argv[]) {
@@ -38,14 +40,14 @@ int main(int argc, char const *argv[]) {
   listObject.displayAllNodes();
   listObject.removeAllElementsOnData((char*)"Rohan",true);
   // listObject.displayAllNodes();
-  printf("\n%s\n","Elements in the list after removing 'Rohan'" );
+  cout<<"Elements in the list after removing 'Rohan'"<<endl;
   listObject.forEach(indiFunc);
   return 0;
 }
 
 void LinkedList::forEach(void (*indi)(int index,struct node*)){
   if(this->first == NULL){
-      printf("%s\n","No elements in list");
+      cout<<"No elements in list"<<endl;
   }else{
     int count = 0;
     struct node* temp = this->first;
@@ -84,7 +86,7 @@ void LinkedList::addAtLast(char *data){
 
 void LinkedList::removeAllElementsOnData(char *data,bool multipleElements){
   if(this->first == NULL)
-    printf("%s\n","No elements in the list" );
+    cout<<"No elements in the list"<<endl;
   else{
     struct node* temp = this->first;
     while(!strcmp(this->first->data,data)){
@@ -121,9 +123,9 @@ void LinkedList::removeAllElementsOnData(char *data,bool multipleElements){
 void LinkedList::displayAllNodes(){
   int count = 0;
   struct node* temp = this->first;
-  printf("%s\n","The list now contains" );
+  cout<<"The list now contains"<<endl;
   while(temp != NULL){
-    printf("%d:%s\n",count,temp->data);
+    cout<<count<<":"<<temp->data<<endl;
     count++;
     temp = temp->next;
   }

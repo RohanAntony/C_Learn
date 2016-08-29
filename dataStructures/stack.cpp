@@ -1,6 +1,8 @@
-#include "stdio.h"
-#include "stdlib.h"
+#include <iostream>
+#include <cstdlib>
 #define MAX_SIZE 4
+
+using namespace std;
 
 class Stack{
   int array[MAX_SIZE];
@@ -13,34 +15,45 @@ public:
 }stack;
 
 int main(int argc, char const *argv[]) {
+  int temp;
   stack.push(19);
   stack.push(25);
   stack.push(12);
   stack.push(28);
   stack.push(67);
   stack.displayAllElements();
-  printf("%d\n",stack.pop());
-  printf("%d\n",stack.pop());
-  printf("%d\n",stack.pop());
-  printf("%d\n",stack.pop());
-  printf("%d\n",stack.pop());
+  std::cout << "Poping all elements out of stack" << std::endl;
+  temp = stack.pop();
+  (temp == -1)?cout<<"":cout<<temp<<endl;
+  temp = stack.pop();
+  (temp == -1)?cout<<"":cout<<temp<<endl;
+  temp = stack.pop();
+  (temp == -1)?cout<<"":cout<<temp<<endl;
+  temp = stack.pop();
+  (temp == -1)?cout<<"":cout<<temp<<endl;
+  temp = stack.pop();
+  (temp == -1)?cout<<"":cout<<temp<<endl;
   stack.displayAllElements();
   return 0;
 }
 
 int Stack::pop(){
-  if(top == -1)
-    printf("%s\n","No more elements in the stack!!" );
-  else{
-    return array[(top)--];
+  if(top == -1){
+    cout<<"No more elements in the stack!!"<<endl;
+    return -1;
+  }else{
+    int temp = array[(top)];
+    top--;
+    return temp;
   }
 }
 
 void Stack::push(int value){
   if(top == MAX_SIZE - 1)
-    printf("%s\n","Stack full, no more space to push" );
+    cout<<"Stack full, no more space to push"<<endl;
   else{
-    array[++(top)] = value;
+    top++;
+    array[(top)] = value;
   }
 }
 
@@ -49,9 +62,12 @@ int Stack::numberOfElements(){
 }
 
 void Stack::displayAllElements(){
+  if(top == -1){
+    cout<<"No more elements in the stack"<<endl;
+  }
   int temp = top;
   while(temp >= 0){
-    printf("%d \n",array[temp] );
+    cout <<array[temp]<< endl;
     temp--;
   }
 }
